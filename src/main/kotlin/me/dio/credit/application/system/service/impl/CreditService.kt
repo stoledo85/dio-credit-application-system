@@ -12,11 +12,12 @@ class CreditService(private val creditRepository: CreditRepository,private val c
         return this.creditRepository.save(credit)
     }
 
-    override fun findAllByCustomer(customerId: Long): List<Credit> {
-        TODO("Not yet implemented")
-    }
+    override fun findAllByCustomer(customerId: Long): List<Credit> =
+        this.creditRepository.findAllByCustomerId(customerId)
 
-    override fun findByCreditCode(creditCode: UUID): Credit {
-        TODO("Not yet implemented")
+    override fun findByCreditCode(customerId: Long,creditCode: UUID): Credit {
+        val credit :Credit = (this.creditRepository.findByCreditCode(creditCode)?:
+        throw RuntimeException("Credit Code $creditCode not found."))
+        return if(credit.customer?.id==customerId) credit else throw RuntimeException("Contact Admin.")
     }
 }
