@@ -1,4 +1,4 @@
-package me.dio.credit.aplication.system
+package me.dio.credit.application.system
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
