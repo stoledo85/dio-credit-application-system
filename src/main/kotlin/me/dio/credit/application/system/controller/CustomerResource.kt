@@ -1,5 +1,6 @@
 package me.dio.credit.application.system.controller
 
+import jakarta.validation.Valid
 import me.dio.credit.application.system.dto.CustomerDto
 import me.dio.credit.application.system.dto.CustomerUpdateDto
 import me.dio.credit.application.system.dto.CustomerView
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/customers")
 class CustomerResource(private val customerService: CustomerService) {
     @PostMapping
-    fun saveCustomer(@RequestBody customerDto: CustomerDto): ResponseEntity<String> {
-        val savedCustomer = this.customerService.save(customerDto.toEntity())
-        return ResponseEntity.status(HttpStatus.OK).body("Customer ${savedCustomer.email} Saved.")
+    fun saveCustomer(@RequestBody @Valid customerDto: CustomerDto): ResponseEntity<CustomerView> {
+        val savedCustomer:Customer = this.customerService.save(customerDto.toEntity())
+        return ResponseEntity.status(HttpStatus.CREATED).body(CustomerView(savedCustomer))
     }
 
     @GetMapping("/{id}")
