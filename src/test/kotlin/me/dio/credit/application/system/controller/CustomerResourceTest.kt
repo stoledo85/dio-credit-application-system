@@ -1,8 +1,8 @@
 package me.dio.credit.application.system.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.dio.credit.application.system.dto.CustomerDto
-import me.dio.credit.application.system.dto.CustomerUpdateDto
+import me.dio.credit.application.system.dto.request.CustomerDto
+import me.dio.credit.application.system.dto.request.CustomerUpdateDto
 import me.dio.credit.application.system.entity.Customer
 import me.dio.credit.application.system.repository.CustomerRepository
 import org.junit.jupiter.api.AfterEach
